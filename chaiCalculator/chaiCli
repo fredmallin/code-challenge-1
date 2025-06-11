@@ -1,0 +1,23 @@
+const readline = require('readline');
+const calculateChaiIngredients = require('./chaiLogic');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+rl.question('Unataka vikombe ngapi vya chai? ', (input) => {
+  const cups = parseInt(input);
+  if (isNaN(cups) || cups <= 0) {
+    console.log('Tafadhali andika nambari sahihi.');
+  } else {
+    const ingredients = calculateChaiIngredients(cups);
+    console.log(`\nTo make ${cups} cups of Kenyan Chai, you will need:`);
+    console.log(`Water: ${ingredients.totalWater} ml`);
+    console.log(`Milk: ${ingredients.totalMilk} ml`);
+    console.log(`Tea Leaves (Majani): ${ingredients.totalTeaLeaves} tablespoons`);
+    console.log(`Sugar (Sukari): ${ingredients.totalSugar} teaspoons`);
+    console.log("\nEnjoy your Chai Bora!");
+  }
+  rl.close();
+});
